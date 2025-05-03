@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>أفكاري</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header><h1>أفكاري</h1></header>
+  <main>
+    <div id="ideas-list"><p>جارٍ تحميل أفكارك...</p></div>
+    <button onclick="window.location.href='index.html'">عودة للرئيسية</button>
+  </main>
+  <script>
+    const username = localStorage.getItem("loggedInUser");
+    const container = document.getElementById("ideas-list");
+    if (!username) {
+      container.innerHTML = "<p>يرجى تسجيل الدخول لرؤية أفكارك.</p>";
+    } else {
+      const ideas = JSON.parse(localStorage.getItem(username + "_ideas")) || [];
+      if (ideas.length === 0) {
+        container.innerHTML = "<p>لم تقم بإضافة أفكار بعد.</p>";
+      } else {
+        let list = "<ul>";
+        ideas.forEach((idea, index) => {
+          list += `<li><strong>فكرة ${index + 1}:</strong> ${idea}</li>`;
+        });
+        list += "</ul>";
+        container.innerHTML = list;
+      }
+    }
+  </script>
+</body>
+</html>

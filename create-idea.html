@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>اكتب فكرتك</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header><h1>فكرتك المجنونة!</h1></header>
+  <main class="form-container">
+    <textarea id="idea-input" placeholder="اكتب فكرتك هنا..."></textarea>
+    <button onclick="generateIdea()">أرسل فكرتك</button>
+  </main>
+  <script>
+    function generateIdea() {
+      const idea = document.getElementById('idea-input').value;
+      const username = localStorage.getItem("loggedInUser");
+      if (!username) {
+        alert("يرجى تسجيل الدخول أولاً.");
+        window.location.href = "login.html";
+        return;
+      }
+      if (idea) {
+        const userIdeas = JSON.parse(localStorage.getItem(username + "_ideas")) || [];
+        userIdeas.push(idea);
+        localStorage.setItem(username + "_ideas", JSON.stringify(userIdeas));
+        localStorage.setItem("userIdea", idea);
+        window.location.href = "idea-plan.html";
+      } else {
+        alert("يرجى كتابة فكرتك.");
+      }
+    }
+  </script>
+</body>
+</html>

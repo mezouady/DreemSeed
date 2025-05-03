@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل الدخول</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header><h1>تسجيل الدخول</h1></header>
+  <main class="form-container">
+    <input type="text" id="username" placeholder="اسم المستخدم">
+    <input type="password" id="password" placeholder="كلمة المرور">
+    <button onclick="login()">دخول</button>
+    <p>ليس لديك حساب؟ <a href="signup.html">سجّل الآن</a></p>
+  </main>
+  <script>
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const storedPassword = localStorage.getItem(username);
+      if (storedPassword === password) {
+        alert("تم تسجيل الدخول بنجاح!");
+        localStorage.setItem("loggedInUser", username);
+        window.location.href = "index.html";
+      } else {
+        alert("اسم المستخدم أو كلمة المرور غير صحيحة.");
+      }
+    }
+  </script>
+</body>
+</html>

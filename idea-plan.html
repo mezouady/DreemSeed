@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>خطة تنفيذ الفكرة</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header><h1>خطة تنفيذ فكرتك</h1></header>
+  <main class="idea-plan">
+    <h2>خطتك الأولية للمشروع:</h2>
+    <ol>
+      <li>حدد هدف الفكرة: ماذا تريد أن تحقق؟</li>
+      <li>ابدأ ببحث بسيط: هل هناك أفكار مشابهة؟</li>
+      <li>قسم فكرتك إلى مراحل صغيرة.</li>
+      <li>ابدأ بالتنفيذ باستخدام أدوات بسيطة (ورقة، هاتف، تطبيق مجاني...)</li>
+      <li>شارك الفكرة مع شخص تثق به لأخذ رأي.</li>
+    </ol>
+    <button onclick="window.location.href='index.html'">العودة للرئيسية</button>
+  </main>
+  <script>
+    const idea = localStorage.getItem('userIdea');
+    if (idea) {
+      const ideaTitle = document.createElement('p');
+      ideaTitle.innerHTML = `<strong>فكرتك:</strong> ${idea}`;
+      document.querySelector('.idea-plan').prepend(ideaTitle);
+    }
+  </script>
+</body>
+</html>
